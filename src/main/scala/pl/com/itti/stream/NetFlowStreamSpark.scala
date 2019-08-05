@@ -1,7 +1,7 @@
 package pl.com.itti.stream
 
 import org.apache.kafka.clients.consumer.ConsumerRecord
-import org.apache.spark.sql.{Encoders, SQLContext, SparkSession}
+import org.apache.spark.sql.SparkSession
 import org.apache.spark.streaming.StreamingContext
 import org.apache.spark.streaming.dstream.InputDStream
 import org.apache.spark.streaming.kafka010.{ConsumerStrategies, KafkaUtils, LocationStrategies}
@@ -33,15 +33,17 @@ object NetFlowStreamSpark {
       val results = sqlContext.sql("SELECT count(*) as flcnt, count(distinct proto) as dprot, count(distinct sPort) as dsport, count(distinct dstAddr) as ddadr, count(distinct dPort) as ddport, " +
         "sum(totPkts) as totp, sum(totBytes) as totbytes, max(Label), srcAddr, label FROM netflows group by label,srcAddr")
 
-      val out = results.rdd.map(x=>x.mkString(",").split(',')).map(x=>(x(7),x(8),x(9))->x ).map{
-        case ( ((windid: String, srcAddr: String, label: String), (y:Array[String])) ) => {
+      println(results.toDF().show())
+
+      val out = results.rdd.map(x => x.mkString(",").split(',')).map(x => (x(7), x(8), x(9)) -> x).map {
+        case (((windid: String, srcAddr: String, label: String), (y: Array[String]))) => {
           y
         }
       }
 
-      out.foreach(it=> {
+      out.foreach(it => {
         println("-------------------")
-        it.foreach(text=> println(text))
+        it.foreach(text => println(text))
         println("-------------------")
       })
 
