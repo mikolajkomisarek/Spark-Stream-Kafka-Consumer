@@ -1,0 +1,38 @@
+@namespace ("pl.com.itti.kafkaproducer.model")
+protocol NetFlowFrameAvro {
+  record NetFlowFrameAvro {
+    string srcAddr;
+    string dstAddr;
+    string proto;
+    string sPort;
+    string dPort;
+    string state ;
+    string sTos;
+    string dTos;
+    string srcWin;
+    string dstWin;
+    string sHops;
+    string dHops;
+    string startTime;
+    string lastTime;
+    string sTtl;
+    string dTtl;
+    string tcpRtt;
+    string synAck;
+    string ackDat;
+    string srcPkts;
+    string  dstPkts;
+    string rcBytes;
+    string dstBytes;
+    string sAppBytes;
+    string dAppBytes;
+    string dur;
+    string totPkts;
+    string totBytes;
+    string totAppByte;
+    string rate;
+    string srcRate;
+    string dstRate;
+    string label;
+  }
+}
