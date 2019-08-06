@@ -8,6 +8,7 @@ object Deps {
   val sparkVersion  = "2.4.3"
   val jacksonVersion = "2.9.4"
   val configTypeSafeVersion = "1.3.4"
+  val logsVersion = "3.9.2"
 
   lazy val jacksonCore = "com.fasterxml.jackson.core" % "jackson-databind" % jacksonVersion
   lazy val jacksonScala = "com.fasterxml.jackson.module" %% "jackson-module-scala" % jacksonVersion
@@ -25,5 +26,7 @@ object Deps {
   lazy val sparkSQL =  "org.apache.spark" %% "spark-sql" % sparkVersion
   lazy val sparkSQLKafka = "org.apache.spark" %% "spark-sql-kafka-0-10" % sparkVersion
 
+
   lazy val configTypeSafe = "com.typesafe" % "config" % configTypeSafeVersion
+  lazy val logs =  "com.typesafe.scala-logging" %% "scala-logging" % logsVersion
 }

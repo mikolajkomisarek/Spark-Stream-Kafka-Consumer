@@ -27,8 +27,8 @@ object KafkaConfig {
     consumerProps.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, classOf[KafkaAvroDeserializer].getCanonicalName)
     consumerProps.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, configuration.getString("kafka-configuration.bootstrap.servers"))
     consumerProps.put("schema.registry.url", configuration.getString("kafka-configuration.schema.registry.url"))
-    consumerProps.put("group.id", "example-consumer-group")
-    consumerProps.put("specific.avro.reader", "true")
+    consumerProps.put("group.id", configuration.getString("kafka-configuration.group.id"))
+    consumerProps.put("specific.avro.reader", (true: java.lang.Boolean))
     consumerProps
   }
 

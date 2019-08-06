@@ -1,6 +1,6 @@
-@namespace ("pl.com.itti.kafkaproducer.model")
-protocol NetFlowFrameAvro {
-  record NetFlowFrameAvro {
+@namespace ("pl.com.itti.model")
+protocol NetFlowFrame {
+  record NetFlowFrame {
     string srcAddr;
     string dstAddr;
     string proto;

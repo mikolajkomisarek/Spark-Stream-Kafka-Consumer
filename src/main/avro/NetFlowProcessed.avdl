@@ -1,0 +1,14 @@
+@namespace ("pl.com.itti.model")
+protocol NetFlowProcessed {
+  record NetFlowProcessed {
+    int flcnt;
+    int dprot;
+    int dsport;
+    int ddadr;
+    int ddport;
+    float totp;
+    float totbytes;
+    string srcAddr;
+    string label;
+  }
+}

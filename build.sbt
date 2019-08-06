@@ -14,7 +14,7 @@ lazy val root = (project in file(".")).
   )
 
 
-lazy val streamConsumerService = (project in file (".")).
+lazy val streamConsumerService = (project in file(".")).
   settings(
     name := "stream-consumer-service",
     sourceGenerators in Compile += (avroScalaGenerateSpecific in Compile).taskValue,
@@ -34,6 +34,7 @@ lazy val streamConsumerService = (project in file (".")).
       sparkStreaming,
       sparkSQL,
       sparkSQLKafka,
-      configTypeSafe
+      configTypeSafe,
+      logs
     )
   )

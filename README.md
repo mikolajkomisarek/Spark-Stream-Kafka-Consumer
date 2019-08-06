@@ -1,2 +1,6 @@
 # Stream-Kafka-Consumer
-# Stream-Kafka-Consumer
+
+##########Generate Avro schema
+
+sbt streamConsumerService/avroScalaGenerateSpecific
+
