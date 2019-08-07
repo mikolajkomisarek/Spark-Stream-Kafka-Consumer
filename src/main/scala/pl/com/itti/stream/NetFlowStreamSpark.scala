@@ -1,5 +1,6 @@
 package pl.com.itti.stream
 
+import com.typesafe.config.ConfigFactory
 import org.apache.kafka.clients.consumer.ConsumerRecord
 import org.apache.spark.streaming.StreamingContext
 import org.apache.spark.streaming.dstream.InputDStream
@@ -11,8 +12,10 @@ import pl.com.itti.utils.NetFlowsUtils
 
 object NetFlowStreamSpark {
 
-  def prepareNetFlowDataAndProduceToKafkaTopic(kafkaTopics: Array[String], spark: StreamingContext): Unit = {
-    createStreamNetFlowRawData(kafkaTopics, spark)
+  private final val configuration = ConfigFactory.load("application")
+
+  def prepareNetFlowDataAndProduceToKafkaTopic( spark: StreamingContext): Unit = {
+    createStreamNetFlowRawData(Array( configuration.getString("data.topic.netflow.raw")), spark)
       .foreachRDD(RDDS => {
         KafkaProducer
           .produceProcessingNetFlowData(

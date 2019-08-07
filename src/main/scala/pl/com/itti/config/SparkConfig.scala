@@ -2,7 +2,7 @@ package pl.com.itti.config
 
 import com.typesafe.config.ConfigFactory
 import org.apache.log4j.{Level, Logger}
-import org.apache.spark.streaming.{Minutes, Seconds, StreamingContext}
+import org.apache.spark.streaming.{Minutes, StreamingContext}
 import org.apache.spark.{SparkConf, SparkContext}
 
 object SparkConfig {

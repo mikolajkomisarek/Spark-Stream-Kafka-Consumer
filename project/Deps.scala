@@ -26,7 +26,6 @@ object Deps {
   lazy val sparkSQL =  "org.apache.spark" %% "spark-sql" % sparkVersion
   lazy val sparkSQLKafka = "org.apache.spark" %% "spark-sql-kafka-0-10" % sparkVersion
 
-
   lazy val configTypeSafe = "com.typesafe" % "config" % configTypeSafeVersion
   lazy val logs =  "com.typesafe.scala-logging" %% "scala-logging" % logsVersion
 }
