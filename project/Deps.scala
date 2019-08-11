@@ -5,7 +5,7 @@ object Deps {
   val kafkaVersion = "2.3.0"
   val kafkaStreamsScalaVersion = "2.3.0"
   val avroSerializerVersion = "5.2.1"
-  val sparkVersion  = "2.4.3"
+  val sparkVersion  = "2.4.0"
   val jacksonVersion = "2.9.4"
   val configTypeSafeVersion = "1.3.4"
   val logsVersion = "3.9.2"
@@ -25,6 +25,8 @@ object Deps {
   lazy val spark = "org.apache.spark" %% "spark-core" % sparkVersion
   lazy val sparkSQL =  "org.apache.spark" %% "spark-sql" % sparkVersion
   lazy val sparkSQLKafka = "org.apache.spark" %% "spark-sql-kafka-0-10" % sparkVersion
+  lazy val sparkAvro =  "org.apache.spark" %% "spark-avro" % sparkVersion
+
 
   lazy val configTypeSafe = "com.typesafe" % "config" % configTypeSafeVersion
   lazy val logs =  "com.typesafe.scala-logging" %% "scala-logging" % logsVersion

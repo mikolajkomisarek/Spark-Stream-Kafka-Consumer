@@ -12,13 +12,15 @@ object KafkaConfig {
 
   val propertiesMap: Map[String, Object] = Map[String, Object](
     "bootstrap.servers" -> configuration.getString("kafka-configuration.bootstrap.servers"),
-      "schema.registry.url" -> configuration.getString("kafka-configuration.schema.registry.url"),
-      "key.deserializer" -> classOf[StringDeserializer],
-      "value.deserializer" -> classOf[KafkaAvroDeserializer],
-      "group.id" -> configuration.getString("kafka-configuration.group.id"),
-      "auto.offset.reset" -> configuration.getString("kafka-configuration.auto.offset.reset"),
-      "specific.avro.reader" -> (true: java.lang.Boolean),
-    )
+    "schema.registry.url" -> configuration.getString("kafka-configuration.schema.registry.url"),
+    "key.deserializer" -> configuration.getString("kafka-configuration.key.deserializer"),
+    "value.deserializer" -> configuration.getString("kafka-configuration.value.deserializer"),
+    "key.serializer" -> configuration.getString("kafka-configuration.key.serializer"),
+    "value.serializer" -> configuration.getString("kafka-configuration.value.serializer"),
+    "group.id" -> configuration.getString("kafka-configuration.group.id"),
+    "auto.offset.reset" -> configuration.getString("kafka-configuration.auto.offset.reset"),
+    "specific.avro.reader" -> (true: java.lang.Boolean)
+  )
 
 
   def properties: Properties = {

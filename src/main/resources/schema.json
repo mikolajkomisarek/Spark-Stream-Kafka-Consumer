@@ -1,0 +1,58 @@
+{
+  "ratings": [
+    {
+      "name": "userId",
+      "dataType": "IntegerType",
+      "nullable": false
+    },
+    {
+      "name": "movieId",
+      "dataType": "IntegerType",
+      "nullable": false
+    },
+    {
+      "name": "rating",
+      "dataType": "FloatType",
+      "nullable": false
+    },
+    {
+      "name": "timestamp",
+      "dataType": "LongType",
+      "nullable": false
+    }
+  ],
+  "movies": [
+    {
+      "name": "movieId",
+      "dataType": "IntegerType",
+      "nullable": false
+    },
+    {
+      "name": "title",
+      "dataType": "StringType",
+      "nullable": false
+    },
+    {
+      "name": "genres",
+      "dataType": "StringType",
+      "nullable": false
+    }
+  ],
+  "netflow": [
+    {
+      "name": "srcAddr",
+      "dataType": "StringType",
+      "nullable": false
+    },
+    {
+      "name": "dstAddr",
+      "dataType": "StringType",
+      "nullable": false
+    },
+    {
+      "name": "proto",
+      "dataType": "StringType",
+      "nullable": false
+    }
+  ]
+}

@@ -9,6 +9,7 @@ lazy val root = (project in file(".")).
       organization := "pl.com.itti",
       scalaVersion := "2.13.0",
       resolvers += "io.confluent" at "http://packages.confluent.io/maven/",
+      resolvers += "com.databricks" at "http://dl.bintray.com/databricks/maven",
       mainClass := Some("pl.com.itti.Main"),
       libraryDependencies ++= Seq(
         jacksonCore,
@@ -37,6 +38,7 @@ lazy val streamConsumerService = (project in file(".")).
   settings(
     name := "stream-consumer-service",
     resolvers += "confluent" at "http://packages.confluent.io/maven/",
+    resolvers += "com.databricks" at "http://dl.bintray.com/databricks/maven",
     sourceGenerators in Compile += (avroScalaGenerateSpecific in Compile).taskValue,
     mainClass := Some("pl.com.itti.Main"),
     libraryDependencies ++= Seq(
@@ -55,7 +57,8 @@ lazy val streamConsumerService = (project in file(".")).
       sparkSQL,
       sparkSQLKafka,
       configTypeSafe,
-      logs
+      logs,
+      sparkAvro
     )
   )
 
