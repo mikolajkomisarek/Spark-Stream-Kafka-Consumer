@@ -1,0 +1,2 @@
+SELECT  flcnt
+FROM data

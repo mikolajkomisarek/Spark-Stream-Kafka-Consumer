@@ -1,8 +1,9 @@
 package pl.com.itti.utils
 
 import org.apache.avro.Schema
-import org.apache.avro.generic.GenericRecord
+import org.apache.avro.generic.{GenericData, GenericRecord}
 import org.apache.spark.sql.Row
+import org.apache.spark.sql.avro.SchemaConverters
 import org.apache.spark.sql.types._
 
 import scala.collection.JavaConverters._
@@ -24,6 +25,7 @@ object GenericRecordUtils {
 
   def getSchemaTypeFromGenericRecord(record: GenericRecord): StructType = StructType(
     record.getSchema.getFields.asScala.map(field => {
+
       val dataType = field.schema().getType match {
         case Schema.Type.BOOLEAN => BooleanType
         case Schema.Type.DOUBLE => DoubleType
@@ -37,5 +39,12 @@ object GenericRecordUtils {
         dataType
       )
     }).toList)
+
+
+  def rowToGenericRecord(row: Row): GenericRecord = {
+    val avroRecord = new GenericData.Record(SchemaConverters.toAvroType(row.schema))
+    row.schema.foreach(it => avroRecord.put(it.name, row.getAs(it.name)))
+    avroRecord
+  }
 }
 

@@ -19,7 +19,6 @@ object KafkaConfig {
     "value.serializer" -> configuration.getString("kafka-configuration.value.serializer"),
     "group.id" -> configuration.getString("kafka-configuration.group.id"),
     "auto.offset.reset" -> configuration.getString("kafka-configuration.auto.offset.reset"),
-    "specific.avro.reader" -> (true: java.lang.Boolean)
   )
 
 
@@ -30,7 +29,6 @@ object KafkaConfig {
     consumerProps.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, configuration.getString("kafka-configuration.bootstrap.servers"))
     consumerProps.put("schema.registry.url", configuration.getString("kafka-configuration.schema.registry.url"))
     consumerProps.put("group.id", configuration.getString("kafka-configuration.group.id"))
-    consumerProps.put("specific.avro.reader", (true: java.lang.Boolean))
     consumerProps
   }
 

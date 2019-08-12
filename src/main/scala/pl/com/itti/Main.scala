@@ -5,6 +5,7 @@ import org.apache.avro.generic.GenericRecord
 import org.apache.log4j.{Level, Logger}
 import org.apache.spark.sql.SparkSession
 import pl.com.itti.config.SparkConfig
+import pl.com.itti.producer.KafkaProducer
 import pl.com.itti.stream.KafkaStream
 import pl.com.itti.utils.GenericRecordUtils
 
@@ -29,27 +30,26 @@ object Main extends App {
 
   val kafkaStream = new KafkaStream[GenericRecord]
 
+
   kafkaStream
     .createStream(
       Array(configuration.getString("data.topic.raw")), spark)
     .foreachRDD(RDDS => {
-
-      val schema = RDDS.map(it => GenericRecordUtils.getSchemaTypeFromGenericRecord(it.value()))
       val genericRecord = RDDS.map(it => GenericRecordUtils.convertGenericRecordToRow(it.value()))
-
       if (!genericRecord.isEmpty()) {
+        val schema = RDDS.map(it => GenericRecordUtils.getSchemaTypeFromGenericRecord(it.value()))
         val df = sqlContext.createDataFrame(
           genericRecord,
           schema.first())
 
         df.createOrReplaceTempView("data")
 
-        val sql = sqlContext.sql(query)
+        val sql = sqlContext.sql(query).toDF()
 
         println(sql.toDF().show())
+
+        KafkaProducer.produceProcessingNetFlowData(sql.collect())
       }
-
-
     })
 
 
